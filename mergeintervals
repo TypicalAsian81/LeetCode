@@ -1,0 +1,20 @@
+class Solution {
+public:
+    vector<vector<int>> merge(vector<vector<int>>& intervals) {
+        vector<int> vect;
+        for(int i=1; i<intervals.size(); i++){
+                if(intervals[i-1][1]>intervals[i][0]){
+                    intervals.erase(intervals.begin()+i-1);
+                    intervals.erase(intervals.begin()+i);
+                    vect.insert(intervals.begin()+i-1,intervals[i-1][0]);
+                    vect.insert(intervals.begin()+i,intervals[i][1]);
+                    intervals.insert(intervals.begin()+i,vect);
+                    vect.clear();
+                }else{
+                    continue;
+                }
+        }
+
+        return intervals;
+    }
+};
